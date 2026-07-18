@@ -15,32 +15,46 @@ canonical ones.
 
 ## Pipeline at a glance
 
+One metadata filter (year), one model filter (field), then extraction, matching,
+triage and manual curation. Script prefixes match the 8 diagram steps; steps with
+several scripts share a number + letter. (Aux scripts are cross-cutting, not a step.)
+
 ```
-posters-science-export.zip (31,417 posters, DataCite 4.7 NDJSON)
+posters.science export  (31,417 posters, DataCite 4.7 NDJSON)
         │
-        │  filter to publicationYear >= 2024                         → 11,028 posters
+ [0 SELECT]      publicationYear >= 2024                              → 11,028 posters
         ▼
-[01] classify_fields    paper-to-field (BioM-ELECTRA) → OpenAlex field + [CLS] emb
-[02] assign_topics      [CLS] nearest-neighbour vs topic_embeddings → subfield/topic
-[03] merge_annotations  fold field/domain/topic into each record; split by domain
-        │
-        │  keep Health Sciences + Life Sciences domains              → 2,930 posters
+ [1 CLASSIFY]    paper-to-field on ALL 11,028 (no keyword filter), keep Health + Life
+   1a_classify_fields    paper-to-field (BioM-ELECTRA) → OpenAlex field + [CLS] emb
+                         (the year SELECT above runs at the top of this script)
+   1b_assign_topics      [CLS] nearest-neighbour vs topic_embeddings → subfield/topic
+   1c_merge_annotations  fold field/domain/topic; keep Health + Life domains  → 2,930 posters
         ▼
-[04] extract_biomarkers DeepSeek full-text, BROAD prompt (mentioned OR implicated)
-[05] enrich_catalogue   DeepSeek re-run: acronym, synonyms, conditions, specimen,
-                        role, direction, method, population per biomarker
-[06] assemble_catalogue collapse names (char → fairly semantic → alias dict) and
-                        match each canonical entity vs the known BiomarkerKB list
-                        → exact | partial | none   ('none' = candidate novel)
-[07] seeded_pass        DeepSeek re-run seeded with our finds; pulls standard IDs
-                        (HGNC/UniProt/CHEBI) + ontology conditions → re-match
-[09] extract_conditions DeepSeek conditions for the biomarker-negative posters
-[10] condition_frequency corpus-wide condition frequency (cross-conference)
-[11] master_record      per-poster join of every layer
-[12] rematch_extended   re-match vs BiomarkerKB + MarkerDB + PRGdb (HGNC/Ensembl alias)
-[13] classify_none      methodical none-parse: NOT_ENTITY / KNOWN_UNCATALOGUED /
-[13b] adjudicate_none      NOVEL_CANDIDATE / UNRESOLVED (deterministic + LLM)
-[14] mine_known_uncatalogued  reference-DB coverage-gap audit
+ [2 EXTRACT]     DeepSeek over full text (title+desc+OCR), broad prompt (mentioned OR implicated)
+   2a_extract_biomarkers  first pass                              → 1,368 posters · 7,597 mentions
+   2b_enrich_catalogue    per-biomarker: acronym, synonyms, condition, specimen, role, direction,
+                          method, population
+   2c_seeded_pass         re-run seeded with our finds; pulls standard IDs (HGNC/UniProt/CHEBI)
+                          + ontology conditions   (iterative: feeds MATCH)
+   2d_extract_conditions  conditions for the biomarker-negative posters
+        ▼
+ [3 NORMALIZE]   collapse names to canonical entities (char → fairly semantic → alias dict)
+   3_assemble_catalogue                                           → 3,430 canonical entities
+        ▼
+ [4 MATCH]       vs BiomarkerKB + MarkerDB + PRGdb (HGNC/Ensembl alias-normalized)
+   4_rematch_extended                             → exact 727 · partial 732 · none 1,971
+        ▼
+ [5 TRIAGE]      deterministic gates over the 1,971 none (kind, identifier, rules)
+   5_classify_none                                → 1,240 settled · 731 forwarded to LLM
+        ▼
+ [6 ADJUDICATE]  DeepSeek verdict on the 731 ambiguous
+   6_adjudicate_none   → NOT_ENTITY 1,349 · KNOWN_UNCATALOGUED 466 · UNRESOLVED 40 · NOVEL_CANDIDATE 116
+        ▼
+ [7 CURATE]      manual review of the 116 (recurrence, specificity) + coverage-gap audit
+   7_mine_known_uncatalogued                                      → 10 featured nominations
+
+ aux_condition_frequency  corpus-wide condition frequency by year (feeds the conditions figures)
+ aux_master_record        per-poster join of every layer
 ```
 
 ## Models & data
