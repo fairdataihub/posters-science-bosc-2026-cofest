@@ -9,6 +9,10 @@ posters-export/
 .fairly_cache/
 _final.tmp*
 
+# Bulk data drops & regenerated NER outputs (kept out of git)
+data-bosc-cofest/
+ner_pubverse/output/
+
 # Secrets — DeepSeek / HF tokens must never be committed
 *.env
 .env
