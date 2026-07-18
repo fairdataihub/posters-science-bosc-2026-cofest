@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: "Potential Novel Biomarker Nomination from Recent Conference Posters"
+message: "If you use this software, data, or the results derived from it, please cite it as below."
+type: software
+authors:
+  - given-names: Jamey
+    family-names: O'Neill
+  - given-names: Sujeet
+    family-names: Kulkarni
+  - given-names: Hudson
+    family-names: Smith
+  - given-names: Olaitan
+    family-names: Awe
+  - given-names: Bhavesh
+    family-names: Patel
+repository-code: "https://github.com/fairdataihub/posters-science-bosc-2026-cofest"
+url: "https://github.com/fairdataihub/posters-science-bosc-2026-cofest"
+abstract: >-
+  An end-to-end pipeline that mines the posters.science corpus of recent
+  scientific conference posters for biomarkers, including novel candidates not
+  yet catalogued in reference databases. Developed by team Posters-are-cool at
+  the BOSC 2026 CollaborationFest.
+keywords:
+  - biomarkers
+  - scientific posters
+  - posters.science
+  - text mining
+  - BOSC
+  - CollaborationFest
+year: 2026

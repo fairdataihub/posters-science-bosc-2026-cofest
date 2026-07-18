@@ -1,0 +1,29 @@
+# Data & deliverables (transferred out-of-band / regenerated — never committed)
+*.ndjson
+*.dump
+*.zip
+*.csv
+*.npy
+*.jsonl
+posters-export/
+.fairly_cache/
+_final.tmp*
+
+# Secrets — DeepSeek / HF tokens must never be committed
+*.env
+.env
+*deepseek*key*
+*token*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs / scratch
+*.log
+scratch/
+
+# Local-only git hooks (activated with: git config core.hooksPath .githooks)
+.githooks/

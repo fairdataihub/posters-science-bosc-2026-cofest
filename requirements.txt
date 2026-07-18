@@ -1,0 +1,15 @@
+# GPU inference venv (torch-pascal): stages 01, 02, 08
+#   torch==2.8.0 (+cu126 for the GTX 1070 / Pascal, run fp32)
+#   transformers==4.57.1
+#   protobuf, sentencepiece            # ELECTRA tokenizer
+#   numpy
+#
+# CPU / API venv (poster-bot): stages 04-07, 09-10
+#   httpx                              # DeepSeek API
+#   sentence-transformers==3.4.1       # gte-large-en-v1.5 (fairly)
+#   fairly-synonyms[cluster]           # name normalization (from fairdataihub/fair-ly-accurate)
+#   scikit-learn>=1.3                  # sklearn HDBSCAN
+#   numpy
+#
+# Not pinned here because the two venvs are pre-existing on the build host;
+# see docs/WORKFLOW.md for which venv runs which stage.
