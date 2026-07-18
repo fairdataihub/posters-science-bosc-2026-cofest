@@ -48,7 +48,7 @@ Folds field/domain/topic into every record; writes `posters-2024plus-annotated.n
 the Health+Life subset, and `posters-2024plus.manifest.json` (counts by
 domain/field/subfield).
 
-### 04 — extract_biomarkers  (DeepSeek API, ~20 min for 2,930)
+### 04 — extract_biomarkers  (DeepSeek API, ~20 min for 2,929)
 ```bash
 ~/poster-bot/.venv/bin/python pipeline/04_extract_biomarkers.py
 ```

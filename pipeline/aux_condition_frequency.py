@@ -1,4 +1,4 @@
-"""Corpus-wide condition frequency across the Health+Life subset (~2,930 posters):
+"""Corpus-wide condition frequency across the Health+Life subset (~2,929 posters):
 combine conditions from the biomarker catalogue (1,368) with the condition-only
 pass over the biomarker-negative posters (1,562). One condition counted once per
 poster (document frequency). Character-normalized + matched to BiomarkerKB's DOID

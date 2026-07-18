@@ -28,7 +28,7 @@ posters.science export  (31,417 posters, DataCite 4.7 NDJSON)
    1a_classify_fields    paper-to-field (BioM-ELECTRA) → OpenAlex field + [CLS] emb
                          (the year SELECT above runs at the top of this script)
    1b_assign_topics      [CLS] nearest-neighbour vs topic_embeddings → subfield/topic
-   1c_merge_annotations  fold field/domain/topic; keep Health + Life domains  → 2,930 posters
+   1c_merge_annotations  fold field/domain/topic; keep Health + Life domains  → 2,929 posters
         ▼
  [2 EXTRACT]     DeepSeek over full text (title+desc+OCR), broad prompt (mentioned OR implicated)
    2a_extract_biomarkers  first pass                              → 1,368 posters · 7,597 mentions
@@ -87,7 +87,7 @@ Written to `~/Downloads` (see `.gitignore` — data is not committed):
 | File | Contents |
 |---|---|
 | `posters-2024plus-annotated.ndjson` | all 11,028, each record + `_paper_to_field` |
-| `posters-2024plus-biomarkers.*` | the 2,930 biomedical posters + `_deepseek_biomarkers` |
+| `posters-2024plus-biomarkers.*` | the 2,929 biomedical posters + `_deepseek_biomarkers` |
 | `posters-2024plus.biomarkers-counts.csv` | one row per canonical biomarker + `match_status` |
 | `posters-2024plus.biomarker-catalogue.csv` | long: poster × biomarker × condition, full enrichment |
 | `posters-2024plus.biomarkers-index.json` | machine-readable summary + novel (`none`) list |

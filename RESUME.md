@@ -4,7 +4,7 @@ State: pipeline runs end-to-end. All artifacts on disk.
 
 ## Headline result
 
-From the posters.science 2024+ subset (11,028 posters → 2,930 biomedical →
+From the posters.science 2024+ subset (11,028 posters → 2,929 biomedical →
 1,368 with biomarkers → 7,394 biomarker records → 3,430 canonical entities):
 
 **"none" (unmatched vs BiomarkerKB + MarkerDB + PRGdb, HGNC/Ensembl-normalized,
