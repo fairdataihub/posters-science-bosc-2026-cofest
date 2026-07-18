@@ -109,9 +109,9 @@ If you use this software, data, or results derived from it, please cite:
 
 A machine-readable citation is in [CITATION.cff](CITATION.cff).
 
-The posters.science platform is described in: Poster Sharing and Discovery Made
-Easy with Posters.science. https://doi.org/10.71707/rk36-9x79
-
 ## Funding
 
-This work was supported by The Navigation Fund.
+Poster Sharing and Discovery Made
+Easy with Posters.science. This work was supported by The Navigation Fund.
+https://doi.org/10.71707/rk36-9x79
+
