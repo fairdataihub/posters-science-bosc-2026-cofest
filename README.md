@@ -5,6 +5,8 @@ corpus (31,417 machine-actionable scientific posters) for **biomarkers — inclu
 novel / unseen candidates**, catalogues them with conditions and identifiers, and
 flags which are absent from a known biomarker database.
 
+This workflow and project was completed as a part of [BOSC CoFest 2026](https://www.open-bio.org/events/bosc-2026/collaborationfest/).
+
 The design goal throughout: **do not perturb the search for unseen biomarkers.**
 No keyword pre-filtering is used to decide what is "about" biomarkers — posters are
 scoped by *research field* (a model, not a vocabulary), and biomarkers are pulled
